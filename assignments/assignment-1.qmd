@@ -10,6 +10,32 @@ title: "Assignment 1"
 
 My first assignment has two parts.
 
-## (a)
+## (a) A Brief Summary of Data Manipulation Tools
 
-## (b)
+This summary is based on [Data Manipulation Tools: dplyr \-- Pt 3 Intro to the Grammar of Data Manipulation with R](https://youtu.be/Zc_ufg4uW4U?si=Zk4uhd1-gZ89YCB- "YouTube") video uploaded by Posit YouTube channel.
+
+Main object of the video and this summary is to discuss key concepts related to data wranling using R and the tidyverse which is a collection of R packages.
+
+**Ways to Access Information**
+
+1.   Extract existing variables by select()
+
+2.   Extract existing observations by filter()
+
+3.   Derive new variables by mutate()
+
+4.   Change the unit of analysis by summarise()
+
+**Pipe Operator**
+
+The pipe operator (%\>%) allows to chain these functions together in a more readable and efficient way. It is easy to build a sequence of data transformations by piping the results of one expression into the next one.
+
+**Unit of Analysis**
+
+It is possible to change the unit of analysis by using group_by() and summarise(). Grouping a data frame allows to calculate summary statistics for different subsets of the data. You can group by one or more columns and then apply summarise() to create summary statistics specific to those groups.
+
+**Conclusion**
+
+This process of grouping and summarizing allows to change the unit of analysis and create different levels of summaries. It makes it easier to explore data at different levels, such as by city, year, or a combination of factors, to gain insights into the data.
+
+\(b\)

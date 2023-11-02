@@ -32,3 +32,7 @@ sidebar: false
 # Hobbies
 
 -   Reading, watching films, researching, walking
+
+# CV
+
+[Selenay Sarıkaya CV](https://drive.google.com/file/d/1WvRukDxvZLBVNB3M8jO8KtBNSJTkTs7t/view?usp=drivesdk "Selenay Sarıkaya CV")

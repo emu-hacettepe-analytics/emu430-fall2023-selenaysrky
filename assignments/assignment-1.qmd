@@ -4,11 +4,7 @@ title: "Assignment 1"
 
 # Assignment 1
 
-```{r}
-1 + 1
-```
-
-My first assignment has two parts.
+My first assignment has four parts. Three parts can be seen inside within this file while the fourth part is rendering and commiting all of my work here.
 
 ## (a) A Brief Summary of Data Manipulation Tools
 
@@ -54,21 +50,9 @@ Python, on the other hand, uses lists, dictionaries, and other data structures f
 
 ``` r
 # Creating a data frame in R
-```
-
-``` r
 df <- data.frame(
-```
-
-``` r
-Name = c("Alice", "Bob", "Charlie"),
-```
-
-``` r
-Age = c(25, 30, 35)
-```
-
-``` r
+  Name = c("Alice", "Bob", "Charlie"),
+  Age = c(25, 30, 35)
 )
 ```
 
@@ -76,26 +60,11 @@ Age = c(25, 30, 35)
 
 ``` python
 # Creating a list of dictionaries in Python
-```
-
-``` python
 data = [
-```
-
-``` python
-{"Name": "Alice", "Age": 25},
-```
-
-``` python
-{"Name": "Bob", "Age": 30},
-```
-
-``` python
-{"Name": "Charlie", "Age": 35}
-```
-
-``` python
-]
+  {"Name": "Alice", "Age": 25},
+  {"Name": "Bob", "Age": 30},
+  {"Name": "Charlie", "Age": 35}
+  ]
 ```
 
 **2. Vectorization**
@@ -108,17 +77,8 @@ Example in R:
 
 ``` r
 # Vectorized operation in R
-```
-
-``` r
 vector1 <- c(1, 2, 3, 4, 5)
-```
-
-``` r
 vector2 <- c(6, 7, 8, 9, 10)
-```
-
-``` r
 result <- vector1 + vector2
 ```
 
@@ -126,17 +86,8 @@ result <- vector1 + vector2
 
 ``` python
 # Using a for loop in Python
-```
-
-``` python
 list1 = [1, 2, 3, 4, 5]
-```
-
-``` python
 list2 = [6, 7, 8, 9, 10]
-```
-
-``` python
 result = [a + b for a, b in zip(list1, list2)]
 ```
 
@@ -150,9 +101,6 @@ R, on the other hand, has a strong focus on statistical analysis and data visual
 
 ``` r
 library(ggplot2)
-```
-
-``` r
 ggplot(df, aes(x = Age, y = Name)) + geom_point()
 ```
 
@@ -160,14 +108,34 @@ ggplot(df, aes(x = Age, y = Name)) + geom_point()
 
 ``` python
 from sklearn.linear_model import LinearRegression
-```
-
-``` python
 model = LinearRegression()
-```
-
-``` python
 # Fit the model, make predictions, etc.
 ```
 
 In conclusion, R and Python are both powerful programming languages. The choice between R and Python ultimately depends on the specific needs and preferences of the user, as well as the nature of the tasks at hand.
+
+## (c) Dataset Example from dslabs
+
+```{r}
+#Setup of dslabs package
+install.packages("dslabs") 
+library(dslabs) 
+```
+
+```{r}
+data("na_example") # Load the "na_example" data set
+head(na_example) # Display the first few rows of the data
+total_na_original <- sum(is.na(na_example))
+print(paste("Total number of NAs in the original data set:", total_na_original))
+```
+
+```{r}
+na_example_no_na <- na_example
+na_example_no_na[is.na(na_example_no_na)] <- 0
+head(na_example_no_na) #Replace all the NAs with 0 and display the new data frame
+```
+
+```{r}
+total_na_new <- sum(is.na(na_example_no_na))
+print(paste("Total number of NAs in the new data frame:", total_na_new))
+```

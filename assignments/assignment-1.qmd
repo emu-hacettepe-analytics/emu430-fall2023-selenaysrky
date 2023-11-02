@@ -18,13 +18,13 @@ Main object of the video and this summary is to discuss key concepts related to 
 
 **Ways to Access Information**
 
-1.   Extract existing variables by select()
+1.  Extract existing variables by select()
 
-2.   Extract existing observations by filter()
+2.  Extract existing observations by filter()
 
-3.   Derive new variables by mutate()
+3.  Derive new variables by mutate()
 
-4.   Change the unit of analysis by summarise()
+4.  Change the unit of analysis by summarise()
 
 **Pipe Operator**
 
@@ -38,4 +38,136 @@ It is possible to change the unit of analysis by using group_by() and summarise(
 
 This process of grouping and summarizing allows to change the unit of analysis and create different levels of summaries. It makes it easier to explore data at different levels, such as by city, year, or a combination of factors, to gain insights into the data.
 
-\(b\)
+## (b) Three Differences Between R and Python [^1]
+
+[^1]: It is important to highlight that, codes from Section (b) are AI generated.
+
+Even though both R and Python are used for data analysis, statistics and machine learning; there are still some key differences between them.
+
+**1. Data Structures and Syntax**
+
+R is known for its data manipulation capabilities, especially with data frames and vectors. It uses a special syntax for data frames, making it easy to work with tabular data.
+
+Python, on the other hand, uses lists, dictionaries, and other data structures for data manipulation. It has a more general-purpose syntax.
+
+-   Example in R:
+
+``` r
+# Creating a data frame in R
+```
+
+``` r
+df <- data.frame(
+```
+
+``` r
+Name = c("Alice", "Bob", "Charlie"),
+```
+
+``` r
+Age = c(25, 30, 35)
+```
+
+``` r
+)
+```
+
+-   Example in Python:
+
+``` python
+# Creating a list of dictionaries in Python
+```
+
+``` python
+data = [
+```
+
+``` python
+{"Name": "Alice", "Age": 25},
+```
+
+``` python
+{"Name": "Bob", "Age": 30},
+```
+
+``` python
+{"Name": "Charlie", "Age": 35}
+```
+
+``` python
+]
+```
+
+**2. Vectorization**
+
+R is designed to work with vectors and supports vectorized operations, which means you can perform operations on entire vectors without explicit loops.
+
+Python, while capable of vectorized operations with libraries like NumPy, often requires explicit loops for many tasks.
+
+Example in R:
+
+``` r
+# Vectorized operation in R
+```
+
+``` r
+vector1 <- c(1, 2, 3, 4, 5)
+```
+
+``` r
+vector2 <- c(6, 7, 8, 9, 10)
+```
+
+``` r
+result <- vector1 + vector2
+```
+
+-   Example in Python:
+
+``` python
+# Using a for loop in Python
+```
+
+``` python
+list1 = [1, 2, 3, 4, 5]
+```
+
+``` python
+list2 = [6, 7, 8, 9, 10]
+```
+
+``` python
+result = [a + b for a, b in zip(list1, list2)]
+```
+
+**3. Libraries and Ecosystem**
+
+Python has a more extensive ecosystem and is often preferred for machine learning and deep learning due to libraries like scikit-learn, TensorFlow, and PyTorch. It's also widely used for web development and general-purpose programming.
+
+R, on the other hand, has a strong focus on statistical analysis and data visualization with packages like ggplot2, dplyr, and Shiny. While R has packages for machine learning as well, Python is often a more popular choice in this domain.
+
+-   Example of R's ggplot2 for data visualization:
+
+``` r
+library(ggplot2)
+```
+
+``` r
+ggplot(df, aes(x = Age, y = Name)) + geom_point()
+```
+
+-   Example of Python's scikit-learn for machine learning:
+
+``` python
+from sklearn.linear_model import LinearRegression
+```
+
+``` python
+model = LinearRegression()
+```
+
+``` python
+# Fit the model, make predictions, etc.
+```
+
+In conclusion, R and Python are both powerful programming languages. The choice between R and Python ultimately depends on the specific needs and preferences of the user, as well as the nature of the tasks at hand.

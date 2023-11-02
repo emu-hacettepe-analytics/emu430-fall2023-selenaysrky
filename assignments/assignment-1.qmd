@@ -2,8 +2,6 @@
 title: "Assignment 1"
 ---
 
-# Assignment 1
-
 My first assignment has four parts. Three parts can be seen inside within this file while the fourth part is rendering and commiting all of my work here.
 
 ## (a) A Brief Summary of Data Manipulation Tools
@@ -116,26 +114,26 @@ In conclusion, R and Python are both powerful programming languages. The choice 
 
 ## (c) Dataset Example from dslabs
 
-```{r}
+``` r
 #Setup of dslabs package
 install.packages("dslabs") 
 library(dslabs) 
 ```
 
-```{r}
+``` r
 data("na_example") # Load the "na_example" data set
 head(na_example) # Display the first few rows of the data
 total_na_original <- sum(is.na(na_example))
 print(paste("Total number of NAs in the original data set:", total_na_original))
 ```
 
-```{r}
+``` r
 na_example_no_na <- na_example
 na_example_no_na[is.na(na_example_no_na)] <- 0
 head(na_example_no_na) #Replace all the NAs with 0 and display the new data frame
 ```
 
-```{r}
+``` r
 total_na_new <- sum(is.na(na_example_no_na))
 print(paste("Total number of NAs in the new data frame:", total_na_new))
 ```

@@ -2,8 +2,239 @@
 title: "Assignment 2"
 ---
 
-# Assignment 2
+### Question 1
+
+Using the filters on https://m.imdb.com/search, list all Turkish movies with more than 2500 reviews, and save the URLs.
 
 ```{r}
-1 + 1
+
+urls <- c( "https://m.imdb.com/search/title/?title_type=feature&release_date=2010-01-01,2023-12-31&sort=moviemeter,asc&num_votes=2500,&country_of_origin=TR&count=250",
+           "https://m.imdb.com/search/title/?title_type=feature&release_date=,2009-12-31&sort=moviemeter,asc&num_votes=2500,&country_of_origin=TR&count=250" )
+
+print(urls)
 ```
+
+### Question 2
+
+Start web scrapping to create a Data Frame with columns: Title, Year, Duration, Rating, Votes.
+
+```{r}
+
+library(tidyverse)
+library(stringr)
+library(rvest)
+library(ggplot2)
+library(knitr)
+library(reshape2)
+
+
+df <- data.frame(titles = character(),
+                        years = numeric(),
+                        durations = character(),
+                        ratings = numeric(),
+                        votes = numeric())
+                    
+
+titles <- c()
+years <- c()
+durations <- c()
+ratings <- c()
+votes <- c()
+
+for(url in urls){
+  html = read_html(url)
+  
+title <- html %>% html_nodes('.ipc-title__text')
+title <- html_text(title)
+title <- tail(head(title,-1),-1)
+title <- str_split(title, " ", n=2)
+title <- unlist(lapply(title, function(x) {x[2]}))
+  
+year <- html %>% html_nodes(".sc-43986a27-7.dBkaPT.dli-title-metadata")
+year <- html_text(year)
+year <- substr(year, 1, 4)
+year <- as.numeric(year)
+
+rating <- html %>% html_nodes(".ipc-rating-star.ipc-rating-star--base.ipc-rating-star--imdb.ratingGroup--imdb-rating")
+rating <- html_text(rating)
+rating <- substr(rating, 1, 3)
+rating <- as.numeric(rating)
+
+vote <- html %>%
+html_node(".sc-53c98e73-0.kRnqtn") %>%
+    html_text() %>%
+    parse_number()
+
+duration <- html %>% html_nodes(".sc-43986a27-7.dBkaPT.dli-title-metadata")
+  duration <- html_text(duration)
+  
+  hour <- str_extract(duration, "\\d+h") %>%
+    str_replace("h", "") %>%
+    as.numeric() %% 10
+  
+  total_duration <- hour * 60 + str_extract(duration, "\\d+m") %>%
+    str_replace("m", "") %>%
+    as.numeric()
+
+  
+titles <- append(titles,title)
+years <- append(years, year)
+durations <- append(durations, total_duration)
+ratings <- append(ratings, rating)
+votes <- append(votes, vote)
+  
+}
+
+df <- data.frame(titles, years, durations, ratings,votes)
+print(head(df,10), caption= "dataframe")
+```
+
+### Question 3
+
+a)  Arrange your data frame in descending order by Rating. Present the top 5 and bottom 5 movies based on user ratings. Have you watched any of these movies? Do you agree or disagree with their current IMDb Ratings?
+
+```{r}
+df <- df[order(df$ratings, decreasing = TRUE),]
+```
+
+#### Top 5 movies based on user user ratings
+
+```{r}
+top5_movies <- head(df, 5)
+print(top5_movies)
+```
+
+I have watched all 5 films. 4 of 5 movies have Kemal Sunal in them and it isn't a surprise since most of the people from a wide range of ages still enjoy these films after all those years and I agree with them.
+
+#### Bottom 5 movies based on user ratings.
+
+```{r}
+bottom5_movies <- tail(df, 5)
+print(bottom5_movies)
+```
+
+I haven't watched any of these movies and I still do not plan to so I agree with these ratings by only my instincs.
+
+b)  Check the ratings of 2-3 of your favorite movies. What are their standings?
+
+My favorite movies are:
+
+[Kader](https://m.imdb.com/title/tt0875595/), [Fakat Müzeyyen Bu Derin Bir Tutku](https://m.imdb.com/title/tt4178986/) and [Sevmek Zamanı](https://m.imdb.com/title/tt0167400/)
+
+-   Kader
+
+```{r}
+print(df[df$titles == "Kader",], caption = "Kader")
+sprintf("Rank of the *Kader* is %d", which(df$titles=="Kader"))
+```
+
+-   Fakat Müzeyyen Bu Derin Bir Tutku
+
+```{r}
+print(df[df$titles == "Fakat Müzeyyen Bu Derin Bir Tutku",], caption = "Fakat Müzeyyen Bu Derin Bir Tutku")
+sprintf("Rank of the *Fakat Müzeyyen Bu Derin Bir Tutku* is %d", which(df$titles=="Fakat Müzeyyen Bu Derin Bir Tutku"))
+```
+
+-   Sevmek Zamanı
+
+```{r}
+print(df[df$titles == "Sevmek Zamanı",], caption = "Sevmek Zamanı")
+sprintf("Rank of the *Sevmek Zamanı* is %d", which(df$titles=="Sevmek Zamanı"))
+```
+
+c)  Plots
+
+Scatter Plot
+
+```{r}
+yearly_rating <- df %>% group_by(years) %>%
+  summarise(average_rating = mean(ratings))
+yearly_rating_scatter_plot <- ggplot(yearly_rating, aes(x=years, y=average_rating)) + geom_point()
+
+print(yearly_rating_scatter_plot)
+
+```
+
+Box Plot
+
+```{r}
+yearly_rating_box_plot <- ggplot(df, aes(x=years, y=ratings, group=years)) + geom_boxplot()
+print(yearly_rating_box_plot)
+```
+
+Number of Movies
+
+```{r}
+
+yearly_movie_count <- df %>% group_by(years) %>%
+  summarise(number_of_movies = n())
+yearly_count <- ggplot(yearly_movie_count, aes(x=years, y=number_of_movies)) + geom_point()
+yearly_count
+
+```
+
+d)  Correlation between Votes and Ratings.
+
+```{r}
+corr_vote = cor(df$ratings, df$votes)
+corr_vote
+```
+
+The number of votes a movie receives is not strongly related with its rating.
+
+e)  Correlation between Duration and Ratings.
+
+```{r}
+corr_duration = cor(df$durations, df$ratings)
+corr_duration
+```
+
+The duration of a movie is not strongly related with its rating.
+
+### Question 4
+
+Top 1000 Turkish movies on IMDB
+
+```{r}
+url = "https://www.imdb.com/search/title/?title_type=feature&groups=top_1000&country_of_origin=TR&count=250"
+name <- c()
+year <- c()
+
+html = read_html(url)
+
+title <- html %>% html_nodes('.ipc-title__text')
+title <- html_text(title)
+title <- tail(head(title,-1),-1)
+title <- str_split(title, " ", n=2)
+title <- unlist(lapply(title, function(x) {x[2]}))
+
+year <- html %>% html_nodes(".sc-43986a27-7.dBkaPT.dli-title-metadata")
+year <- html_text(year)
+year <- substr(year, 1, 4)
+year <- as.numeric(year)
+
+name <- append(name, title)
+year <- append(year, year)
+top1000_df <- data.frame(name, year)
+print(top1000_df, caption = "Turkish movies in IMDB Top1000 without rating, duration and votes")
+```
+
+New data frame with Turkish movies in the top 1000 containing only the title and year.
+
+```{r}
+top1000_new_df<- merge(x=top1000_df, y=df,
+                           by.x=c("name", "year"),
+                           by.y=c("titles", "years"), all.x=TRUE)
+print(top1000_new_df, caption = "Turkish movies in IMBD Top1000 with rating, duration and votes")
+```
+
+```{r}
+top1000_new_df <- top1000_new_df[order(top1000_new_df$ratings, decreasing = TRUE),]
+print(top1000_new_df, caption = "Turkish movies in IMDB Top 1000 according to rankings.")
+```
+
+```{r}
+print(head(df,11), caption = "Movies Dataframe")
+```
+
+These movies are not the same with the first 11 highest rated movies in my inital data frame. This implies that IMDB not only uses rankings alone to determine their top 1000 movie list but also uses different criterias such may be as popularity, awards, etc.

@@ -4,6 +4,8 @@ title: "Assignment 1"
 
 My first assignment has four parts. Three parts can be seen inside within this file while the fourth part is rendering and commiting all of my work here.
 
+deneme
+
 ## (a) A Brief Summary of Data Manipulation Tools
 
 This summary is based on [Data Manipulation Tools: dplyr \-- Pt 3 Intro to the Grammar of Data Manipulation with R](https://youtu.be/Zc_ufg4uW4U?si=Zk4uhd1-gZ89YCB- "YouTube") video uploaded by Posit YouTube channel.

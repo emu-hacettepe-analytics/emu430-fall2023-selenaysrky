@@ -4,14 +4,14 @@
     "href": "project.html",
     "title": "Our Course Project",
     "section": "",
-    "text": "I’m honored to be a member of the [group name] project team.\nBelow, you’ll find a brief summary of our project. To access a detailed project description, please go to https://[your-project-url].\nSummary\n[provide a biref summary of your project]\n\n\n\n Back to top"
+    "text": "I’m honored to be a member of the 4k1e_rda project.\nBelow, you’ll find a brief summary of our project. To access a detailed project description, please go to https://emu-hacettepe-analytics.github.io/emu430-fall2023-team-4k1e_rda/\nSummary\nIn this project an exploratory analysis of the types of crimes committed in Turkey between 2011 and 2020 is presented. Types of crimes are categorized by educational status in different time periods.\n\n\n\n Back to top"
   },
   {
     "objectID": "index.html",
     "href": "index.html",
     "title": "Welcome to My Analytics Lab",
     "section": "",
-    "text": "Hello! My name is Selenay Sarıkaya.\nThis is my personal webpage.\nPlease stay tuned to follow my works on data analytics, blog posts, and more.\nThis is our template.\n\n\n\n Back to top"
+    "text": "Hello! My name is Selenay Sarıkaya.\nThis is my personal webpage.\nPlease stay tuned to follow my works on data analytics, blog posts, and more.\n\n\n\n Back to top"
   },
   {
     "objectID": "assignments/assignment-2.html",
@@ -46,14 +46,14 @@
     "href": "assignments/assignment-1.html",
     "title": "Assignment 1",
     "section": "",
-    "text": "1 + 1\n\n[1] 2\n\n\nMy first assignment has two parts."
+    "text": "My first assignment has four parts. Three parts can be seen inside within this file while the fourth part is rendering and commiting all of my work here.\ndeneme"
   },
   {
     "objectID": "assignments.html",
     "href": "assignments.html",
     "title": "My Assignments",
     "section": "",
-    "text": "On this page, I showcase the assignment I conducted for the [term and year, e.g. Fall 2023] EMU 430 Data Analytics course.\nPlease use left menu to navigate through my assignments.\nThe most recent update to this page was made on October 25, 2023\n\n\n\n Back to top"
+    "text": "On this page, I showcase the assignment I conducted for the Fall 2023 EMU 430 Data Analytics course.\nPlease use left menu to navigate through my assignments.\nThe most recent update to this page was made on November 2, 2023\n\n\n\n Back to top"
   },
   {
     "objectID": "posts.html",
@@ -61,5 +61,33 @@
     "title": "My Blog",
     "section": "",
     "text": "This page is under construction.\n\n\n\n Back to top"
+  },
+  {
+    "objectID": "assignments/assignment-1.html#a-a-brief-summary-of-data-manipulation-tools",
+    "href": "assignments/assignment-1.html#a-a-brief-summary-of-data-manipulation-tools",
+    "title": "Assignment 1",
+    "section": "(a) A Brief Summary of Data Manipulation Tools",
+    "text": "(a) A Brief Summary of Data Manipulation Tools\nThis summary is based on Data Manipulation Tools: dplyr -- Pt 3 Intro to the Grammar of Data Manipulation with R video uploaded by Posit YouTube channel.\nMain object of the video and this summary is to discuss key concepts related to data wranling using R and the tidyverse which is a collection of R packages.\nWays to Access Information\n\nExtract existing variables by select()\nExtract existing observations by filter()\nDerive new variables by mutate()\nChange the unit of analysis by summarise()\n\nPipe Operator\nThe pipe operator (%&gt;%) allows to chain these functions together in a more readable and efficient way. It is easy to build a sequence of data transformations by piping the results of one expression into the next one.\nUnit of Analysis\nIt is possible to change the unit of analysis by using group_by() and summarise(). Grouping a data frame allows to calculate summary statistics for different subsets of the data. You can group by one or more columns and then apply summarise() to create summary statistics specific to those groups.\nConclusion\nThis process of grouping and summarizing allows to change the unit of analysis and create different levels of summaries. It makes it easier to explore data at different levels, such as by city, year, or a combination of factors, to gain insights into the data."
+  },
+  {
+    "objectID": "assignments/assignment-1.html#b-three-differences-between-r-and-python-1",
+    "href": "assignments/assignment-1.html#b-three-differences-between-r-and-python-1",
+    "title": "Assignment 1",
+    "section": "(b) Three Differences Between R and Python 1",
+    "text": "(b) Three Differences Between R and Python 1\nEven though both R and Python are used for data analysis, statistics and machine learning; there are still some key differences between them.\n1. Data Structures and Syntax\nR is known for its data manipulation capabilities, especially with data frames and vectors. It uses a special syntax for data frames, making it easy to work with tabular data.\nPython, on the other hand, uses lists, dictionaries, and other data structures for data manipulation. It has a more general-purpose syntax.\n\nExample in R:\n\n# Creating a data frame in R\ndf &lt;- data.frame(\n  Name = c(\"Alice\", \"Bob\", \"Charlie\"),\n  Age = c(25, 30, 35)\n)\n\nExample in Python:\n\n# Creating a list of dictionaries in Python\ndata = [\n  {\"Name\": \"Alice\", \"Age\": 25},\n  {\"Name\": \"Bob\", \"Age\": 30},\n  {\"Name\": \"Charlie\", \"Age\": 35}\n  ]\n2. Vectorization\nR is designed to work with vectors and supports vectorized operations, which means you can perform operations on entire vectors without explicit loops.\nPython, while capable of vectorized operations with libraries like NumPy, often requires explicit loops for many tasks.\nExample in R:\n# Vectorized operation in R\nvector1 &lt;- c(1, 2, 3, 4, 5)\nvector2 &lt;- c(6, 7, 8, 9, 10)\nresult &lt;- vector1 + vector2\n\nExample in Python:\n\n# Using a for loop in Python\nlist1 = [1, 2, 3, 4, 5]\nlist2 = [6, 7, 8, 9, 10]\nresult = [a + b for a, b in zip(list1, list2)]\n3. Libraries and Ecosystem\nPython has a more extensive ecosystem and is often preferred for machine learning and deep learning due to libraries like scikit-learn, TensorFlow, and PyTorch. It’s also widely used for web development and general-purpose programming.\nR, on the other hand, has a strong focus on statistical analysis and data visualization with packages like ggplot2, dplyr, and Shiny. While R has packages for machine learning as well, Python is often a more popular choice in this domain.\n\nExample of R’s ggplot2 for data visualization:\n\nlibrary(ggplot2)\nggplot(df, aes(x = Age, y = Name)) + geom_point()\n\nExample of Python’s scikit-learn for machine learning:\n\nfrom sklearn.linear_model import LinearRegression\nmodel = LinearRegression()\n# Fit the model, make predictions, etc.\nIn conclusion, R and Python are both powerful programming languages. The choice between R and Python ultimately depends on the specific needs and preferences of the user, as well as the nature of the tasks at hand."
+  },
+  {
+    "objectID": "assignments/assignment-1.html#c-dataset-example-from-dslabs",
+    "href": "assignments/assignment-1.html#c-dataset-example-from-dslabs",
+    "title": "Assignment 1",
+    "section": "(c) Dataset Example from dslabs",
+    "text": "(c) Dataset Example from dslabs\n#Setup of dslabs package\ninstall.packages(\"dslabs\") \nlibrary(dslabs) \ndata(\"na_example\") # Load the \"na_example\" data set\nhead(na_example) # Display the first few rows of the data\ntotal_na_original &lt;- sum(is.na(na_example))\nprint(paste(\"Total number of NAs in the original data set:\", total_na_original))\nna_example_no_na &lt;- na_example\nna_example_no_na[is.na(na_example_no_na)] &lt;- 0\nhead(na_example_no_na) #Replace all the NAs with 0 and display the new data frame\ntotal_na_new &lt;- sum(is.na(na_example_no_na))\nprint(paste(\"Total number of NAs in the new data frame:\", total_na_new))"
+  },
+  {
+    "objectID": "assignments/assignment-1.html#footnotes",
+    "href": "assignments/assignment-1.html#footnotes",
+    "title": "Assignment 1",
+    "section": "Footnotes",
+    "text": "Footnotes\n\n\nIt is important to highlight that, codes from Section (b) are AI generated.↩︎"
   }
 ]
